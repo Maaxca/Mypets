@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "400252434607",
+    "project_id": "projecto-tfg",
+    "storage_bucket": "projecto-tfg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400252434607:android:60e28348a30cb3d72b3c5a",
+        "android_client_info": {
+          "package_name": "com.proyectoFinal.mypets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "400252434607-p5adips6no9qmh2ldt2b65epg1spuogr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgCc57ERDlBjT7Lhhi_thEaTwc4uSVUV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "400252434607-p5adips6no9qmh2ldt2b65epg1spuogr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
