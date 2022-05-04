@@ -5,7 +5,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.*
@@ -17,7 +16,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -29,6 +27,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var IniciandoSesionTextView: TextView=findViewById(R.id.IniciandoSesionTextView)
+        var progressBar: ProgressBar=findViewById(R.id.progressBar)
+        var scrollView:ScrollView=findViewById(R.id.scroll)
+        progressBar.visibility=View.GONE
+        IniciandoSesionTextView.visibility=View.GONE
+        scrollView.visibility=View.VISIBLE
 
         setup()
         session()
@@ -43,23 +47,23 @@ class MainActivity : AppCompatActivity() {
     private fun session(){
         val prefs=getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
         val email=prefs.getString("email",null)
-        val provider=prefs.getString("provider",null)
 
-        if(email!=null && provider!=null){
+        if(email!=null){
             var authLayout: LinearLayout =findViewById(R.id.authLayout)
             authLayout.visibility= View.INVISIBLE
-            //showHome(email,provider)
+            showHome(email)
         }
     }
 
     private fun setup(){
 
-        var signUpButton: Button=findViewById(R.id.LogOutButton)
+        var signUpButton: Button=findViewById(R.id.LogOutButton2)
         var loginButton: Button=findViewById(R.id.loginButton)
         var googleButton: ImageButton =findViewById(R.id.GoogleButton)
         var contraseñaButton: Button=findViewById(R.id.ContraseñaButton)
         var emailEditText: EditText=findViewById(R.id.emailEditText)
         var PasswordEditText: EditText=findViewById(R.id.passwordEditText)
+        var progressBar: ProgressBar=findViewById(R.id.progressBar)
 
         signUpButton.setOnClickListener{
             showRegister("")
@@ -94,6 +98,7 @@ class MainActivity : AppCompatActivity() {
                 .build()
             val googleClient=GoogleSignIn.getClient(this,googleConf)
             googleClient.signOut()
+            progressBar.visibility=View.VISIBLE
 
             startActivityForResult(googleClient.signInIntent,GOOGLE_SIGN_IN)
         }
@@ -125,6 +130,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        var IniciandoSesionTextView: TextView=findViewById(R.id.IniciandoSesionTextView)
+        var progressBar: ProgressBar=findViewById(R.id.progressBar)
+        var scrollView:ScrollView=findViewById(R.id.scroll)
+        progressBar.visibility=View.GONE
         if(requestCode==GOOGLE_SIGN_IN){
             val task=GoogleSignIn.getSignedInAccountFromIntent(data)
             try{
@@ -135,6 +144,9 @@ class MainActivity : AppCompatActivity() {
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener{
 
                         if(it.isSuccessful){
+                            progressBar.visibility=View.VISIBLE
+                            IniciandoSesionTextView.visibility=View.VISIBLE
+                            scrollView.visibility=View.GONE
                             comprobar(account.email?:"")
 
                         } else{
@@ -173,6 +185,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun comprobar(email: String){
+
         var ia:Int=0
         val docRef = db.collection("users")
         docRef.get()
@@ -214,7 +227,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showHome(email:String){
 
-        val homeIntent=Intent(this,HomeActivity::class.java).apply {
+        val homeIntent=Intent(this,MenuActivity::class.java).apply {
             putExtra("email",email)
         }
         startActivity(homeIntent)

@@ -2,7 +2,6 @@ package com.proyectoFinal.mypets
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -25,10 +24,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setup(email:String) {
-        var textView:TextView=findViewById(R.id.textView)
+        var textView:TextView=findViewById(R.id.txtxTextView)
         textView.text=email
 
-        var logOutButton: Button =findViewById(R.id.LogOutButton)
+        var logOutButton: Button =findViewById(R.id.LogOutButton2)
         logOutButton.setOnClickListener {
             val prefs=getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit()
             prefs.clear()
