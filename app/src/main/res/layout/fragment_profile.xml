@@ -17,31 +17,93 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/txtxTextView"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Email" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Proveedor" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/LogOutButton2"
+            <ImageButton
+                android:id="@+id/imageButton"
                 android:layout_width="wrap_content"
-                android:layout_height="59dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#FF6F00"
-                android:text="Cerrar Sesion" />
+                tools:src="@tools:sample/avatars" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/NombreTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/ApellidosTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Apellidos"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/EdadTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Edad"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/EmailTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Correo"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="33dp" />
+
+        <Button
+            android:id="@+id/CambioContraseñaButton"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:layout_marginEnd="16dp"
+            android:text="Cambiar contraseña actual" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="83dp" />
+
+        <Button
+            android:id="@+id/LogOutButton2"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:backgroundTint="#FF6F00"
+            android:text="Cerrar Sesion" />
+
     </LinearLayout>
 </FrameLayout>

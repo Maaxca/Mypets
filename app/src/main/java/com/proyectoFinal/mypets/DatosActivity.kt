@@ -63,10 +63,10 @@ class DatosActivity : AppCompatActivity() {
         ).addOnSuccessListener { documentReference ->
             showAlert(2)
             if(proveedor=="GOOGLE"){
-
+                showAlert(2)
             }
             else{
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(email,contraseña)
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,contraseña)
             }
 
         }.addOnFailureListener { e ->
@@ -74,38 +74,6 @@ class DatosActivity : AppCompatActivity() {
             }
     }
 
-    fun cuentaGoogle(email:String){
-        val googleConf= GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("1008744362853-mmerf0v426pljufrj29fc76qss5lg8ti.apps.googleusercontent.com")
-            .requestEmail()
-            .build()
-        val googleClient= GoogleSignIn.getClient(this,googleConf)
-        googleClient.signOut()
-
-        startActivityForResult(googleClient.signInIntent,GOOGLE_SIGN_IN)
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode==GOOGLE_SIGN_IN){
-            val task=GoogleSignIn.getSignedInAccountFromIntent(data)
-            try{
-                val account=task.getResult(ApiException::class.java)
-
-                if(account!=null){
-                    val credential= GoogleAuthProvider.getCredential(account.idToken,null)
-                    FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener{
-
-                        if(it.isSuccessful){
-                            showHome()
-                        }
-                    }
-                }
-            }catch (e: ApiException){
-                showAlert(0)
-            }
-
-        }}
 
     private fun showAlert(numero:Int){
         when(numero){
@@ -127,6 +95,7 @@ class DatosActivity : AppCompatActivity() {
                 .setPositiveButton("Aceptar"){ _, _ ->
                     showHome()
                 }
+                .setCancelable(false)
                 .show()}
         }
 
@@ -148,7 +117,7 @@ class DatosActivity : AppCompatActivity() {
     private fun showHome(){
         val bundle:Bundle?=intent.extras
         val email:String?=bundle?.getString("email")
-        val homeIntent= Intent(this,HomeActivity::class.java).apply {
+        val homeIntent= Intent(this,MenuActivity::class.java).apply {
             putExtra("email",email)
         }
         startActivity(homeIntent)

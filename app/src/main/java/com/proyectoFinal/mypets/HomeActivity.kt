@@ -24,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setup(email:String) {
-        var textView:TextView=findViewById(R.id.txtxTextView)
+        var textView:TextView=findViewById(R.id.NombreTextView)
         textView.text=email
 
         var logOutButton: Button =findViewById(R.id.LogOutButton2)

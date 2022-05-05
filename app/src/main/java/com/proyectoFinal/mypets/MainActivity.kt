@@ -122,8 +122,6 @@ class MainActivity : AppCompatActivity() {
                         }
                 }
                 .setNegativeButton("Cancelar"){ dialogInterface: DialogInterface, i: Int -> }.show()
-
-
         }
 
     }

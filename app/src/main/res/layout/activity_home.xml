@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/txtxTextView"
+            android:id="@+id/NombreTextView"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="Email" />
