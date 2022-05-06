@@ -13,19 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPets">
         <activity
-            android:name=".MenuActivity"
+            android:name=".MenuPrincipal.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".DatosActivity"
+            android:name=".login.DatosActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".login.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".login.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

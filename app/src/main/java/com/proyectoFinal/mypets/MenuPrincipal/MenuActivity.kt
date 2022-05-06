@@ -1,18 +1,12 @@
-package com.proyectoFinal.mypets
+package com.proyectoFinal.mypets.MenuPrincipal
 
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
-import com.proyectoFinal.mypets.fragments.AnimalFragment
-import com.proyectoFinal.mypets.fragments.HomeFragment
-import com.proyectoFinal.mypets.fragments.ProfileFragment
+import com.proyectoFinal.mypets.R
 
 class MenuActivity : AppCompatActivity() {
     private lateinit var mActiveFragment: Fragment
@@ -35,31 +29,31 @@ class MenuActivity : AppCompatActivity() {
     private fun setupBottomNav(){
         mFragmentManager = supportFragmentManager
 
-        val homeFragment = HomeFragment()
-        val addFragment = AnimalFragment()
+        val calendarFragment = CalendarFragment()
+        val animalFragment = AnimalFragment()
         val profileFragment = ProfileFragment()
 
-        mActiveFragment = homeFragment
+        mActiveFragment = animalFragment
 
         mFragmentManager.beginTransaction()
             .add(R.id.hostFragment, profileFragment, ProfileFragment::class.java.name)
             .hide(profileFragment).commit()
         mFragmentManager.beginTransaction()
-            .add(R.id.hostFragment, addFragment, AnimalFragment::class.java.name)
-            .hide(addFragment).commit()
+            .add(R.id.hostFragment, animalFragment, AnimalFragment::class.java.name)
+            .commit()
         mFragmentManager.beginTransaction()
-            .add(R.id.hostFragment, homeFragment, HomeFragment::class.java.name).commit()
+            .add(R.id.hostFragment, calendarFragment, CalendarFragment::class.java.name).hide(calendarFragment).commit()
 
         findViewById<BottomNavigationView>(R.id.bottomNav).setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.action_home -> {
-                    mFragmentManager.beginTransaction().hide(mActiveFragment).show(homeFragment).commit()
-                    mActiveFragment = homeFragment
+                R.id.action_calendar -> {
+                    mFragmentManager.beginTransaction().hide(mActiveFragment).show(calendarFragment).commit()
+                    mActiveFragment = calendarFragment
                     true
                 }
-                R.id.action_add -> {
-                    mFragmentManager.beginTransaction().hide(mActiveFragment).show(addFragment).commit()
-                    mActiveFragment = addFragment
+                R.id.action_pets -> {
+                    mFragmentManager.beginTransaction().hide(mActiveFragment).show(animalFragment).commit()
+                    mActiveFragment = animalFragment
                     true
                 }
                 R.id.action_profile -> {

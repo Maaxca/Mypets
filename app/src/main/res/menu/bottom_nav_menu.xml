@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_home"
-        android:title="@string/home_title"
-        android:icon="@drawable/ic_home"
+        android:id="@+id/action_pets"
+        android:title="@string/home_pets"
+        android:icon="@drawable/ic_pets"
         app:showAsAction="never"/>
     <item
-        android:id="@+id/action_add"
-        android:title="@string/home_add"
-        android:icon="@drawable/ic_add_photo_alternate"
+        android:id="@+id/action_calendar"
+        android:title="@string/home_calendar"
+        android:icon="@drawable/ic_calendar"
         app:showAsAction="never"/>
     <item
         android:id="@+id/action_profile"

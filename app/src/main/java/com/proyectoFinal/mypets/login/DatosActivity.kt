@@ -1,6 +1,5 @@
-package com.proyectoFinal.mypets
+package com.proyectoFinal.mypets.login
 
-import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,14 +8,12 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.proyectoFinal.mypets.MenuPrincipal.MenuActivity
+import com.proyectoFinal.mypets.R
 
 class DatosActivity : AppCompatActivity() {
     val db = Firebase.firestore
@@ -106,7 +103,7 @@ class DatosActivity : AppCompatActivity() {
             .setTitle("Aviso")
             .setMessage("¿Quieres volver al inicio?")
             .setPositiveButton("Aceptar"){ _, _ ->
-                var intent=Intent(this,MainActivity::class.java)
+                var intent=Intent(this, MainActivity::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
             }
@@ -117,7 +114,7 @@ class DatosActivity : AppCompatActivity() {
     private fun showHome(){
         val bundle:Bundle?=intent.extras
         val email:String?=bundle?.getString("email")
-        val homeIntent= Intent(this,MenuActivity::class.java).apply {
+        val homeIntent= Intent(this, MenuActivity::class.java).apply {
             putExtra("email",email)
         }
         startActivity(homeIntent)

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DatosActivity"
+    tools:context=".login.DatosActivity"
     tools:layout_editor_absoluteX="-4dp"
     tools:layout_editor_absoluteY="13dp">
 

@@ -1,4 +1,4 @@
-package com.proyectoFinal.mypets
+package com.proyectoFinal.mypets.login
 
 import android.content.Context
 import android.content.DialogInterface
@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.proyectoFinal.mypets.MenuPrincipal.MenuActivity
+import com.proyectoFinal.mypets.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -109,7 +111,9 @@ class MainActivity : AppCompatActivity() {
                 .setView(dialog)
                 .setPositiveButton("Enviar"){ _, _: Int ->
                         if(dialog.findViewById<EditText>(R.id.emailEditTextDialog).text.isNotEmpty()){
-                            FirebaseAuth.getInstance().sendPasswordResetEmail((dialog.findViewById<EditText>(R.id.emailEditTextDialog)).text.toString())
+                            FirebaseAuth.getInstance().sendPasswordResetEmail((dialog.findViewById<EditText>(
+                                R.id.emailEditTextDialog
+                            )).text.toString())
                                 .addOnSuccessListener {
                                     Toast.makeText(this,"Se ha enviado el correo",Toast.LENGTH_LONG).show()
                             }
@@ -205,7 +209,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showDatos(email: String) {
-        val homeIntent=Intent(this,DatosActivity::class.java).apply {
+        val homeIntent=Intent(this, DatosActivity::class.java).apply {
             putExtra("email",email)
             putExtra("proveedor","GOOGLE")
         }
@@ -225,14 +229,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun showHome(email:String){
 
-        val homeIntent=Intent(this,MenuActivity::class.java).apply {
+        val homeIntent=Intent(this, MenuActivity::class.java).apply {
             putExtra("email",email)
         }
         startActivity(homeIntent)
     }
     private fun showRegister(email:String){
 
-        val RegisterIntent=Intent(this,RegisterActivity::class.java).apply{
+        val RegisterIntent=Intent(this, RegisterActivity::class.java).apply{
             putExtra("email",email)
         }
         startActivity(RegisterIntent)

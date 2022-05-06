@@ -1,4 +1,4 @@
-package com.proyectoFinal.mypets.fragments
+package com.proyectoFinal.mypets.MenuPrincipal
 
 import android.app.Activity
 import android.content.Context
@@ -13,24 +13,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.proyectoFinal.mypets.MainActivity
+import com.proyectoFinal.mypets.login.MainActivity
 import com.proyectoFinal.mypets.R
-import com.proyectoFinal.mypets.Snapshot
 import com.proyectoFinal.mypets.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
@@ -115,7 +110,7 @@ class ProfileFragment : Fragment() {
                 .setNegativeButton("Cancelar"){ dialogInterface: DialogInterface, i: Int -> }.show()
         }
         mBinding.imageButton.setOnClickListener {
-            var dialogq = MaterialAlertDialogBuilder(requireContext()).apply {
+            var dialog2 = MaterialAlertDialogBuilder(requireContext()).apply {
                 setTitle("Advertencia")
                 setCancelable(false)
                 setMessage("Si desea cambiar la foto, debe de saber que tiene que reiniciar la aplicacion o cerrar sesión para aplicar los cambios")
@@ -157,15 +152,14 @@ class ProfileFragment : Fragment() {
 
     fun cambiarimagen(email:String){
         Glide.with(requireContext())
-
             .load("https://firebasestorage.googleapis.com/v0/b/projecto-tfg.appspot.com/o/Perfiles%2F$email?alt=media")
             .apply {
-                override(600,460)
+                override(400,400)
             }
             .centerCrop()
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .skipMemoryCache(true)
-            .error(R.drawable.ic_account_circle)
+            .error(R.drawable.avatar)
             .into(mBinding.imageButton)
 
     }
