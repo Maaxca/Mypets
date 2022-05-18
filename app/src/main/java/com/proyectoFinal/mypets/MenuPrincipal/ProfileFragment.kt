@@ -107,16 +107,18 @@ class ProfileFragment : Fragment() {
                                 Toast.makeText(requireContext(),"Ha habido un error", Toast.LENGTH_LONG).show()
                             }
                 }
-                .setNegativeButton("Cancelar"){ dialogInterface: DialogInterface, i: Int -> }.show()
+                .setNegativeButton("Cancelar"){ dialogInterface: DialogInterface, i: Int -> }
+                .show()
         }
         mBinding.imageButton.setOnClickListener {
             var dialog2 = MaterialAlertDialogBuilder(requireContext()).apply {
                 setTitle("Advertencia")
                 setCancelable(false)
-                setMessage("Si desea cambiar la foto, debe de saber que tiene que reiniciar la aplicacion o cerrar sesión para aplicar los cambios")
+                setMessage("¿Desea cambiar la foto de perfil?")
                 setPositiveButton("Aceptar") { _, i ->
                     setupFirebase(email?:"")
                     openGallery(email?:"")
+
                 }
                 setNegativeButton("Cancelar",null)
 
@@ -127,6 +129,7 @@ class ProfileFragment : Fragment() {
     private fun openGallery(email:String) {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         galleryResult.launch(intent)
+
     }
 
     private fun postSnapshot(email:String,foto:Uri?) {
@@ -136,16 +139,13 @@ class ProfileFragment : Fragment() {
 
             myStorageRef.putFile(mPhotoSelectedUri!!)
                 .addOnProgressListener {
-
+                    mBinding.imagenProgressBar.visibility=View.VISIBLE
+                    mBinding.imageButton.visibility=View.INVISIBLE
+                    cambiarimagen(email)
                 }
                 .addOnCompleteListener {
-
-                }
-                .addOnSuccessListener {
-
-                }
-                .addOnFailureListener {
-                    Log.d("Foto","Fallo")
+                    mBinding.imagenProgressBar.visibility=View.GONE
+                    mBinding.imageButton.visibility=View.VISIBLE
                 }
         }
     }

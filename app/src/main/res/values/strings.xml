@@ -1,9 +1,107 @@
 <resources>
     <string name="app_name">My Pets</string>
     <string name="prefs_file">com.exameple.pruebafirebase.PREFERENCE_FILE_KEY</string>
+    <string name="prefs_file2">com.exameple.pruebafirebase.PREFERENCE_FILE_KEY2</string>
     <string name="home_pets">Mascotas</string>
     <string name="home_profile">Perfil</string>
     <string name="home_calendar">Calendario</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="Gatos">
+        <item>Absinio</item>
+        <item>Americano de pelo duro</item>
+        <item>Asiatico</item>
+        <item>Azul Ruso</item>
+        <item>Balines</item>
+        <item>Bengali</item>
+        <item>Birmano</item>
+        <item>Bobtail</item>
+        <item>Bombay</item>
+        <item>Bosque de Noruega</item>
+        <item>Bosque de Siberia</item>
+        <item>Britanico de pelo corto</item>
+        <item>Burmes</item>
+        <item>Burmilla</item>
+        <item>Chinchilla</item>
+        <item>Cornish Rex</item>
+        <item>Cymric</item>
+        <item>Devon Rex</item>
+        <item>Exotico de pelo corto</item>
+        <item>Khaoo Manee</item>
+        <item>Korat</item>
+        <item>Laperm</item>
+        <item>Maine coon</item>
+        <item>Manx</item>
+        <item>Mau Egipcio</item>
+        <item>Mist australiano</item>
+        <item>Munchkin</item>
+        <item>Ocigato</item>
+        <item>Oriental</item>
+        <item>Persa</item>
+        <item>Pixie bob</item>
+        <item>Ragdoll</item>
+        <item>Savannah</item>
+        <item>Selkirk rex</item>
+        <item>Siames</item>
+        <item>Singapura</item>
+        <item>Snowshoe</item>
+        <item>Somali</item>
+        <item>Sphynx</item>
+        <item>Tiffanie</item>
+        <item>Tonquines</item>
+        <item>Van Turco</item>
+
+
+    </string-array>
+
+    <string-array name="Perros">
+        <item>Bullldog</item>
+        <item>Labrador Retriever</item>
+        <item>Pastor Aleman</item>
+        <item>Caniche</item>
+        <item>Golden Retriever</item>
+        <item>Chihuahua</item>
+        <item>Bichon Frise</item>
+        <item>Boxer</item>
+        <item>Border Collie</item>
+        <item>Husky</item>
+        <item>Pug</item>
+        <item>American Staffordshire terrier</item>
+        <item>Boston Terrier</item>
+        <item>Cavalier King Charles spaniel</item>
+        <item>Pomerania</item>
+        <item>Yorkshire Terrie</item>
+        <item>Bull Terrier</item>
+        <item>Pastor ovejero</item>
+        <item>Cocker spaniel</item>
+        <item>Basset Hound</item>
+        <item>Lebrel</item>
+        <item>Gran danes</item>
+        <item>Bichon maltes</item>
+        <item>Perro esquimal</item>
+        <item>Chow Chow</item>
+        <item>Shih Tzu</item>
+        <item>Dachshund</item>
+        <item>Affernpinscher</item>
+        <item>Basenji</item>
+        <item>Doberman</item>
+        <item>Airedale terrier</item>
+        <item>Spaniel breton</item>
+        <item>Pastor belga</item>
+        <item>Bullmastiff</item>
+        <item>Bedlington Terrier</item>
+        <item>Perro de San Huberto</item>
+        <item>Pastor de Anatolia</item>
+        <item>Lhapsa Apso</item>
+        <item>Pitbull</item>
+        <item>Shiba Inu</item>
+        <item>Rottweiler</item>
+        <item>Samoyedo</item>
+    </string-array>
+
+    <string-array name="Tipos">
+        <item>Gato</item>
+        <item>Perro</item>
+    </string-array>
 </resources>

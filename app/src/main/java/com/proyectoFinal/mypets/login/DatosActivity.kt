@@ -55,7 +55,8 @@ class DatosActivity : AppCompatActivity() {
             hashMapOf(
                 "nombre" to nombre,
                 "apellidos" to apellidos,
-                "edad" to edad
+                "edad" to edad,
+                "numMascotas" to 0
             )
         ).addOnSuccessListener { documentReference ->
             showAlert(2)

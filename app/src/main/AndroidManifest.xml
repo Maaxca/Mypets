@@ -3,7 +3,7 @@
     package="com.proyectoFinal.mypets">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPets">
+        <activity
+            android:name=".MenuPrincipal.AnadirActivity"
+            android:exported="false" />
         <activity
             android:name=".MenuPrincipal.MenuActivity"
             android:exported="false" />

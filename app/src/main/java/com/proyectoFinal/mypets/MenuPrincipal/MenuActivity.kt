@@ -1,12 +1,16 @@
 package com.proyectoFinal.mypets.MenuPrincipal
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
 import com.proyectoFinal.mypets.R
+import com.proyectoFinal.mypets.login.MainActivity
 
 class MenuActivity : AppCompatActivity() {
     private lateinit var mActiveFragment: Fragment
@@ -64,5 +68,21 @@ class MenuActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    override fun onBackPressed() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle("¿Desea cerrar sesión?")
+            .setPositiveButton("Confirmar",{ dialogInterface,i ->
+                val prefs=getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)!!.edit()
+                prefs.clear()
+                prefs.apply()
+                FirebaseAuth.getInstance().signOut()
+                val intent= Intent(this, MainActivity::class.java)
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+            })
+            .setNegativeButton("Cancelar",null)
+            .show()
     }
 }
