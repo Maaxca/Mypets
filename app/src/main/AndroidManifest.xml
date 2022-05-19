@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPets">
         <activity
+            android:name=".EventsActivity"
+            android:exported="false" />
+        <activity
             android:name=".MenuPrincipal.AnadirActivity"
             android:exported="false" />
         <activity
