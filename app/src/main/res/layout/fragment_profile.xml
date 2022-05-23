@@ -91,7 +91,8 @@
             android:layout_width="match_parent"
             android:layout_height="59dp"
             android:layout_marginEnd="16dp"
-            android:text="Cambiar contraseña actual" />
+            android:text="Cambiar contraseña actual"
+            app:iconTint="#FFFFFF" />
 
         <Space
             android:layout_width="match_parent"
@@ -103,7 +104,6 @@
             android:layout_height="59dp"
             android:layout_marginEnd="16dp"
             android:layout_weight="1"
-            android:backgroundTint="#FF6F00"
             android:text="Cerrar Sesion" />
 
     </LinearLayout>

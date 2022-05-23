@@ -8,5 +8,7 @@ data class Animal(
     val tipo:String,
     val raza:String,
     val numMascota:Int,
-    val numRaza:Long
+    val numRaza:Long,
+    val horaPaseo:String,
+    val horaComida:String
 ):Serializable

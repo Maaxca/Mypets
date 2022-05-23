@@ -1,5 +1,7 @@
 package com.proyectoFinal.mypets.MenuPrincipal
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -12,9 +14,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -40,12 +42,13 @@ class AnimalFragment : Fragment(),OnClickListener {
         // Inflate the layout for this fragment
         mBinding = FragmentAnimalBinding.inflate(inflater, container, false)
         return mBinding.root
-        return inflater.inflate(R.layout.fragment_animal, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         setupRecyclerView()
+        createNotificationChannel()
+        createNotificationChannel2()
 
         mBinding.anadirFloatingButton.setOnClickListener {
             var sharedPref = activity?.getSharedPreferences(
@@ -112,7 +115,7 @@ class AnimalFragment : Fragment(),OnClickListener {
 
                 while (i<numeroMascotas){
                     if(document.get("Mascotas.Mascota$i.Nombre").toString().isNotEmpty()){
-                        var animal: Animal = Animal(document.get("Mascotas.Mascota$i.Nombre").toString(),document.get("Mascotas.Mascota$i.Edad").toString(),document.get("Mascotas.Mascota$i.Tipo").toString(),document.get("Mascotas.Mascota$i.Raza").toString(),i,document.get("Mascotas.Mascota$i.numRaza") as Long)
+                        var animal: Animal = Animal(document.get("Mascotas.Mascota$i.Nombre").toString(),document.get("Mascotas.Mascota$i.Edad").toString(),document.get("Mascotas.Mascota$i.Tipo").toString(),document.get("Mascotas.Mascota$i.Raza").toString(),i,document.get("Mascotas.Mascota$i.numRaza") as Long,"0","0")
 
                         listajuegos.add(animal)
                     }
@@ -186,6 +189,14 @@ class AnimalFragment : Fragment(),OnClickListener {
             .setNegativeButton("Cancelar"){ dialogInterface: DialogInterface, i: Int -> }
             .show()
 
+        dialog.findViewById<Button>(R.id.button2).setOnClickListener {
+            val intent= Intent(context, EventsActivity::class.java).apply {
+                putExtra("animal",animal)
+            }
+            dialogg.dismiss()
+            startActivity(intent)
+        }
+
         dialog.findViewById<Button>(R.id.button3).setOnClickListener {
             var email:String=activity?.intent?.getStringExtra("email").toString()
             val intent= Intent(context, AnadirActivity::class.java).apply {
@@ -196,6 +207,28 @@ class AnimalFragment : Fragment(),OnClickListener {
             dialogg.dismiss()
             startActivity(intent)
         }
+    }
+
+    private fun createNotificationChannel()
+    {
+        val name = "Paseo"
+        val desc = "Este canal es para recordar el paseo de tu mascota"
+        val importance = NotificationManager.IMPORTANCE_HIGH
+        val channel = NotificationChannel(channelIDPaseo, name, importance)
+        channel.description = desc
+        val notificationManager =activity?.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
+    }
+
+    private fun createNotificationChannel2()
+    {
+        val name = "Comida"
+        val desc = "Este canal es para recordar la comida de tu mascota"
+        val importance = NotificationManager.IMPORTANCE_HIGH
+        val channel = NotificationChannel(channelIDComida, name, importance)
+        channel.description = desc
+        val notificationManager = activity?.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
     }
 
 
