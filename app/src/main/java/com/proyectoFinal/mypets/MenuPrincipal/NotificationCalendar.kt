@@ -7,10 +7,8 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import com.proyectoFinal.mypets.R
 
-const val notificationID = 1
+const val notificationID = -1
 const val channelID = "Eventos"
-const val channelIDPaseo = "Paseo"
-const val channelIDComida = "Comida"
 const val titleExtra = "titleExtra"
 const val messageExtra = "messageExtra"
 

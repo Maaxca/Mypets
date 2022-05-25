@@ -47,8 +47,6 @@ class AnimalFragment : Fragment(),OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         setupRecyclerView()
-        createNotificationChannel()
-        createNotificationChannel2()
 
         mBinding.anadirFloatingButton.setOnClickListener {
             var sharedPref = activity?.getSharedPreferences(
@@ -77,6 +75,8 @@ class AnimalFragment : Fragment(),OnClickListener {
         mAdapter = AnimalAdapter(ArrayList(),this)
         mGridLayout = GridLayoutManager(requireContext(),1)
         obtenerDatos()
+        createNotificationChannel3()
+        createNotificationChannel2()
         mBinding.recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = mGridLayout
@@ -115,7 +115,7 @@ class AnimalFragment : Fragment(),OnClickListener {
 
                 while (i<numeroMascotas){
                     if(document.get("Mascotas.Mascota$i.Nombre").toString().isNotEmpty()){
-                        var animal: Animal = Animal(document.get("Mascotas.Mascota$i.Nombre").toString(),document.get("Mascotas.Mascota$i.Edad").toString(),document.get("Mascotas.Mascota$i.Tipo").toString(),document.get("Mascotas.Mascota$i.Raza").toString(),i,document.get("Mascotas.Mascota$i.numRaza") as Long,"0","0")
+                        var animal: Animal = Animal(document.get("Mascotas.Mascota$i.Nombre").toString(),document.get("Mascotas.Mascota$i.Edad").toString(),document.get("Mascotas.Mascota$i.Tipo").toString(),document.get("Mascotas.Mascota$i.Raza").toString(),i,document.get("Mascotas.Mascota$i.numRaza") as Long,document.get("Mascotas.Mascota$i.horaPaseo").toString(),document.get("Mascotas.Mascota$i.horaComida").toString())
 
                         listajuegos.add(animal)
                     }
@@ -158,7 +158,10 @@ class AnimalFragment : Fragment(),OnClickListener {
                                         "Mascotas.Mascota$i.Nombre" to "",
                                         "Mascotas.Mascota$i.Edad" to "",
                                         "Mascotas.Mascota$i.Raza" to "",
-                                        "Mascotas.Mascota$i.Tipo" to ""
+                                        "Mascotas.Mascota$i.Tipo" to "",
+                                        "Mascotas.Mascota$i.numRaza" to "",
+                                        "Mascotas.Mascota$i.horaComida" to "",
+                                        "Mascotas.Mascota$i.horaPaseo" to ""
                                     )
                                 )
                                 val mSnapshotsStorageRef: StorageReference =
@@ -182,6 +185,7 @@ class AnimalFragment : Fragment(),OnClickListener {
 
     override fun onEditarAnimal(animal: Animal) {
 
+        var email:String=activity?.intent?.getStringExtra("email").toString()
         var dialog=layoutInflater.inflate(R.layout.dialog_animal,null)
         var dialogg=MaterialAlertDialogBuilder(requireContext())
             .setTitle("¿Que deseas hacer?")
@@ -192,13 +196,14 @@ class AnimalFragment : Fragment(),OnClickListener {
         dialog.findViewById<Button>(R.id.button2).setOnClickListener {
             val intent= Intent(context, EventsActivity::class.java).apply {
                 putExtra("animal",animal)
+                putExtra("email",email)
             }
             dialogg.dismiss()
             startActivity(intent)
         }
 
         dialog.findViewById<Button>(R.id.button3).setOnClickListener {
-            var email:String=activity?.intent?.getStringExtra("email").toString()
+
             val intent= Intent(context, AnadirActivity::class.java).apply {
                 putExtra("email",email)
                 putExtra("animal",animal)
@@ -209,27 +214,28 @@ class AnimalFragment : Fragment(),OnClickListener {
         }
     }
 
-    private fun createNotificationChannel()
+    private fun createNotificationChannel3()
     {
-        val name = "Paseo"
-        val desc = "Este canal es para recordar el paseo de tu mascota"
-        val importance = NotificationManager.IMPORTANCE_HIGH
-        val channel = NotificationChannel(channelIDPaseo, name, importance)
+        var name = "Paseo"
+        var desc = "Este canal es para recordar el paseo de tu mascota"
+        var importance = NotificationManager.IMPORTANCE_HIGH
+        var channel = NotificationChannel(channelIDPaseo, name, importance)
         channel.description = desc
-        val notificationManager =activity?.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+        var notificationManager = activity?.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
     }
 
     private fun createNotificationChannel2()
     {
-        val name = "Comida"
-        val desc = "Este canal es para recordar la comida de tu mascota"
-        val importance = NotificationManager.IMPORTANCE_HIGH
-        val channel = NotificationChannel(channelIDComida, name, importance)
-        channel.description = desc
-        val notificationManager = activity?.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
+        var name = "Comida"
+        var desc = "Este canal es para recordar la comida de tu mascota"
+        var importance = NotificationManager.IMPORTANCE_HIGH
+        var channel2 = NotificationChannel(channelIDComida, name, importance)
+        channel2.description = desc
+        var notificationManager2 = activity?.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager2.createNotificationChannel(channel2)
     }
+
 
 
 }

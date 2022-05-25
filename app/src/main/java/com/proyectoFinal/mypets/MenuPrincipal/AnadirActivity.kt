@@ -162,7 +162,9 @@ class AnadirActivity : AppCompatActivity() {
                                 "Mascotas.Mascota$numMascotas.Edad" to mBinding.edadMascotaEditText2.text.toString(),
                                 "Mascotas.Mascota$numMascotas.Tipo" to mBinding.tiposSpinner2.selectedItem.toString(),
                                 "Mascotas.Mascota$numMascotas.Raza" to raza,
-                                "Mascotas.Mascota$numMascotas.numRaza" to numRaza
+                                "Mascotas.Mascota$numMascotas.numRaza" to numRaza,
+                                "Mascotas.Mascota$numMascotas.horaPaseo" to "0",
+                                "Mascotas.Mascota$numMascotas.horaComida" to "0"
                             )
                         )
 

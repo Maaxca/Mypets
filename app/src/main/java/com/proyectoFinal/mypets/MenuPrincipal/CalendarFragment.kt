@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import com.proyectoFinal.mypets.R
 import com.proyectoFinal.mypets.databinding.FragmentCalendarBinding
 
@@ -32,12 +33,21 @@ class CalendarFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         session()
+        createNotificationChannel()
 
         binding.submitButton2.setOnClickListener {
 
-            scheduleNotification()
-            binding.titleET2.setText("")
-            binding.messageET2.setText("")
+            with(binding){
+                if(titleET2.text?.isNotEmpty()==true){
+                    scheduleNotification()
+                    titleET2.setText("")
+                    messageET2.setText("")
+                }
+                else{
+                    Toast.makeText(context,"Tienes que poner un titulo",Toast.LENGTH_LONG).show()
+                }
+
+            }
         }
 
         binding.btnDelete.setOnClickListener{
@@ -84,7 +94,7 @@ class CalendarFragment : Fragment() {
 
     private fun scheduleNotification()
     {
-        createNotificationChannel()
+
         val intent = Intent(requireContext(), Notification::class.java)
         val title = binding.titleET2.text.toString()
         val message = binding.messageET2.text.toString()
@@ -157,8 +167,8 @@ class CalendarFragment : Fragment() {
 
     private fun createNotificationChannel()
     {
-        val name = "Notif Channel"
-        val desc = "A Description of the Channel"
+        val name = "Eventos"
+        val desc = "Este canal es para los eventos de calendario"
         val importance = NotificationManager.IMPORTANCE_DEFAULT
         val channel = NotificationChannel(channelID, name, importance)
         channel.description = desc
