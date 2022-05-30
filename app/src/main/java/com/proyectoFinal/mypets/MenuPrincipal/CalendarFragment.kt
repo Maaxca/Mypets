@@ -4,19 +4,20 @@ import android.app.*
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import java.util.*
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
 import com.proyectoFinal.mypets.R
 import com.proyectoFinal.mypets.databinding.FragmentCalendarBinding
+import java.util.*
+
 
 class CalendarFragment : Fragment() {
     private lateinit var binding:FragmentCalendarBinding
@@ -54,12 +55,28 @@ class CalendarFragment : Fragment() {
             AlertDialog.Builder(requireContext())
                 .setTitle("¿Desea eliminar el recordatorio?")
                 .setPositiveButton("Aceptar"){ dialogInterface: DialogInterface, i: Int ->
-                    val notificationManager = activity?.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
-                    notificationManager.cancel(1)
+                    val alarmManager = activity?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                    val intent = Intent(requireContext(), Notification::class.java)
+                    val pendingIntent = PendingIntent.getBroadcast(
+                        requireContext(),
+                        notificationID,
+                        intent,
+                        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+                    )
+                    alarmManager.cancel(pendingIntent)
+
                     view?.findViewById<TextView>(R.id.titleNotificationTextView)?.text=""
                     view?.findViewById<TextView>(R.id.messageNotificationTextView)?.text=""
                     view?.findViewById<TextView>(R.id.tiempoNotificationTextView)?.text=""
                     view?.findViewById<ImageButton>(R.id.btnDelete)?.visibility=View.GONE
+
+                    val prefs=activity?.getSharedPreferences("com.exameple.pruebafirebase.PREFERENCE_FILE_KEY3", Context.MODE_PRIVATE)?.edit()
+                    prefs?.putString("Evento","")
+                    prefs?.putString("TituloEvento","")
+                    prefs?.putString("MensajeEvento","")
+                    prefs?.putString("TiempoEvento","")
+                    prefs?.putString("Boton","")
+                    prefs?.apply()
                 }
                 .setNegativeButton("Cancelar",null)
                 .show()

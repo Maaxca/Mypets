@@ -1,0 +1,8 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/teal_700"/>
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/pets2"/>
+    </item>
+</layer-list>

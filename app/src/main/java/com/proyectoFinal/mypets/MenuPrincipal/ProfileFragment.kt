@@ -86,12 +86,18 @@ class ProfileFragment : Fragment() {
         var logOutButton: Button =mBinding.LogOutButton2
         var contraseñaButton: Button =mBinding.CambioContraseAButton
         logOutButton.setOnClickListener {
-            val prefs=activity?.getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)?.edit()
-            prefs!!.clear()
-            prefs!!.apply()
-            FirebaseAuth.getInstance().signOut()
-            var intent= Intent(context, MainActivity::class.java)
-            startActivity(intent)
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("¿Desea cerrar sesión?")
+                .setPositiveButton("Confirmar",{ dialogInterface,i ->
+                    val prefs=activity?.getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)?.edit()
+                    prefs!!.clear()
+                    prefs!!.apply()
+                    FirebaseAuth.getInstance().signOut()
+                    var intent= Intent(context, MainActivity::class.java)
+                    startActivity(intent)
+                })
+                .setNegativeButton("Cancelar",null)
+                .show()
         }
         contraseñaButton.setOnClickListener {
             var dialog=layoutInflater.inflate(R.layout.dialog_contrasena2,null)
@@ -111,7 +117,7 @@ class ProfileFragment : Fragment() {
                 .show()
         }
         mBinding.imageButton.setOnClickListener {
-            var dialog2 = MaterialAlertDialogBuilder(requireContext()).apply {
+            MaterialAlertDialogBuilder(requireContext()).apply {
                 setTitle("Advertencia")
                 setCancelable(false)
                 setMessage("¿Desea cambiar la foto de perfil?")
@@ -122,6 +128,14 @@ class ProfileFragment : Fragment() {
                 }
                 setNegativeButton("Cancelar",null)
 
+            }.show()
+        }
+
+        mBinding.ayudaButton.setOnClickListener {
+            MaterialAlertDialogBuilder(requireContext()).apply {
+                setTitle("Ayuda")
+                setMessage("\nPuedes cambiar tu foto de perfil presionando sobre la foto por defecto en la sección perfil en la esquina superior izquierda\n\nPara añadir a las mascotas tienes que darle al boton flotante en la seccion de Mascotas\n\nPara eliminar una mascota tienes que mantener presionado la mascota\n\nPara editar a la mascota o crear/editar sus eventos tienes que darle simplemente a la mascota")
+                setPositiveButton("Aceptar",null)
             }.show()
         }
     }

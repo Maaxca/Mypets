@@ -60,16 +60,13 @@ class EventsActivity : AppCompatActivity() {
                 animal.horaPaseo="0"
 
                 val intent = Intent(baseContext, NotificationPaseo::class.java)
-                val title = "Sacal@ de paseo"
-                val message = "${animal.nombre} quiere pasear"
-                intent.putExtra(titleNotificationPaseo, title)
-                intent.putExtra(messageNotificationPaseo, message)
-                intent.putExtra("id", animal.numMascota)
 
                 val alarmManager = getSystemService(Context.ALARM_SERVICE) as? AlarmManager
                 val pendingIntent = PendingIntent.getService(baseContext, animal.numMascota, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
                 if (pendingIntent != null && alarmManager != null) {
                     alarmManager.cancel(pendingIntent)
+                    val notificationManager = getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+                    notificationManager.cancel(animal.numMascota)
                 }
             }
         }
@@ -80,16 +77,13 @@ class EventsActivity : AppCompatActivity() {
                 animal.horaComida="0"
 
                 val intent = Intent(baseContext, NotificationComida::class.java)
-                val title = "Dale de comer"
-                val message = "${animal.nombre} quiere comer"
-                intent.putExtra(titleNotificationComida, title)
-                intent.putExtra(messageNotificationComida, message)
-                intent.putExtra("id", "${animal.numMascota}${animal.numMascota}".toInt())
 
                 val alarmManager = getSystemService(Context.ALARM_SERVICE) as? AlarmManager
                 val pendingIntent = PendingIntent.getService(baseContext, "${animal.numMascota}${animal.numMascota}".toInt(), intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
                 if (pendingIntent != null && alarmManager != null) {
                     alarmManager.cancel(pendingIntent)
+                    val notificationManager = getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+                    notificationManager.cancel("${animal.numMascota}${animal.numMascota}".toInt())
                 }
             }
         }

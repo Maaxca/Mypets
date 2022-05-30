@@ -15,6 +15,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -118,63 +119,69 @@ class AnadirActivity : AppCompatActivity() {
 
         mBinding.aceptarButton.setOnClickListener {
 
-            if(mBinding.nombreMascotaEditText2.text.isEmpty()||mBinding.edadMascotaEditText2.text.isEmpty()){
-
-                val builder= AlertDialog.Builder(this)
-                builder.setTitle("Error")
-                builder.setMessage("No puedes dejar ningun campo vacio")
-                builder.setPositiveButton("Aceptar",null)
-                val dialog2: AlertDialog =builder.create()
-                dialog2.show()
-
-            }else{
-                if(intent?.getStringExtra("animalEnv").toString()!=""){
-                    var animal: Animal=intent?.getSerializableExtra("animal") as Animal
-                    val docRef = db.collection("users").document(email)
-                    docRef.get()
-                        .addOnSuccessListener { document ->
-                            var numMascostas: String = document.get("numMascotas").toString()
-                            var i: Long = 0
-                            while (i < numMascostas.toLong()) {
-                                if (document.get("Mascotas.Mascota$i.Nombre").toString().compareTo(animal.nombre) == 0 && i==animal.numMascota.toLong()) {
-                                    docRef.update(
-                                        mapOf(
-                                            "Mascotas.Mascota$i.Nombre" to mBinding.nombreMascotaEditText2.text.toString(),
-                                            "Mascotas.Mascota$i.Edad" to mBinding.edadMascotaEditText2.text.toString(),
-                                            "Mascotas.Mascota$i.Tipo" to mBinding.tiposSpinner2.selectedItem.toString(),
-                                            "Mascotas.Mascota$i.Raza" to raza,
-                                            "Mascotas.Mascota$i.numRaza" to numRaza
-                                        )
-                                    )
-                                }
-                                i++
-                            }
-                        }
-                }
-                else{
-                    db.collection("users").document(email).get().addOnSuccessListener { document ->
-                        var numMascotas=document.get("numMascotas") as Long
-
-                        db.collection("users").document(email).update(
-                            mapOf(
-                                "numMascotas" to numMascotas+1,
-                                "Mascotas.Mascota$numMascotas.Nombre" to mBinding.nombreMascotaEditText2.text.toString(),
-                                "Mascotas.Mascota$numMascotas.Edad" to mBinding.edadMascotaEditText2.text.toString(),
-                                "Mascotas.Mascota$numMascotas.Tipo" to mBinding.tiposSpinner2.selectedItem.toString(),
-                                "Mascotas.Mascota$numMascotas.Raza" to raza,
-                                "Mascotas.Mascota$numMascotas.numRaza" to numRaza,
-                                "Mascotas.Mascota$numMascotas.horaPaseo" to "0",
-                                "Mascotas.Mascota$numMascotas.horaComida" to "0"
-                            )
-                        )
-
-                    }
-                }
-                val prefs=getSharedPreferences(getString(R.string.prefs_file2), Context.MODE_PRIVATE).edit()
-                prefs.putString("añadir","algo")
-                prefs.apply()
-                finish()
+            if(mBinding.progressBar2.isVisible){
+                Toast.makeText(baseContext,"Espere por favor a que la imagen se suba",Toast.LENGTH_LONG).show()
             }
+            else{
+                if(mBinding.nombreMascotaEditText2.text.isEmpty()||mBinding.edadMascotaEditText2.text.isEmpty()){
+
+                    val builder= AlertDialog.Builder(this)
+                    builder.setTitle("Error")
+                    builder.setMessage("No puedes dejar ningun campo vacio")
+                    builder.setPositiveButton("Aceptar",null)
+                    val dialog2: AlertDialog =builder.create()
+                    dialog2.show()
+
+                }else{
+                    if(intent?.getStringExtra("animalEnv").toString()!=""){
+                        var animal: Animal=intent?.getSerializableExtra("animal") as Animal
+                        val docRef = db.collection("users").document(email)
+                        docRef.get()
+                            .addOnSuccessListener { document ->
+                                var numMascostas: String = document.get("numMascotas").toString()
+                                var i: Long = 0
+                                while (i < numMascostas.toLong()) {
+                                    if (document.get("Mascotas.Mascota$i.Nombre").toString().compareTo(animal.nombre) == 0 && i==animal.numMascota.toLong()) {
+                                        docRef.update(
+                                            mapOf(
+                                                "Mascotas.Mascota$i.Nombre" to mBinding.nombreMascotaEditText2.text.toString(),
+                                                "Mascotas.Mascota$i.Edad" to mBinding.edadMascotaEditText2.text.toString(),
+                                                "Mascotas.Mascota$i.Tipo" to mBinding.tiposSpinner2.selectedItem.toString(),
+                                                "Mascotas.Mascota$i.Raza" to raza,
+                                                "Mascotas.Mascota$i.numRaza" to numRaza
+                                            )
+                                        )
+                                    }
+                                    i++
+                                }
+                            }
+                    }
+                    else{
+                        db.collection("users").document(email).get().addOnSuccessListener { document ->
+                            var numMascotas=document.get("numMascotas") as Long
+
+                            db.collection("users").document(email).update(
+                                mapOf(
+                                    "numMascotas" to numMascotas+1,
+                                    "Mascotas.Mascota$numMascotas.Nombre" to mBinding.nombreMascotaEditText2.text.toString(),
+                                    "Mascotas.Mascota$numMascotas.Edad" to mBinding.edadMascotaEditText2.text.toString(),
+                                    "Mascotas.Mascota$numMascotas.Tipo" to mBinding.tiposSpinner2.selectedItem.toString(),
+                                    "Mascotas.Mascota$numMascotas.Raza" to raza,
+                                    "Mascotas.Mascota$numMascotas.numRaza" to numRaza,
+                                    "Mascotas.Mascota$numMascotas.horaPaseo" to "0",
+                                    "Mascotas.Mascota$numMascotas.horaComida" to "0"
+                                )
+                            )
+
+                        }
+                    }
+                    val prefs=getSharedPreferences(getString(R.string.prefs_file2), Context.MODE_PRIVATE).edit()
+                    prefs.putString("añadir","algo")
+                    prefs.apply()
+                    finish()
+                }
+            }
+
         }
 
         mBinding.backButton.setOnClickListener {

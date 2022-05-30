@@ -24,6 +24,16 @@
             android:name=".MenuPrincipal.NotificationComida"
             android:enabled="true"/>
         <activity
+            android:name=".MenuPrincipal.SplashActivity"
+            android:exported="true"
+            android:theme="@style/SplashScreen">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity
             android:name=".MenuPrincipal.EventsActivity"
             android:exported="false" />
         <activity

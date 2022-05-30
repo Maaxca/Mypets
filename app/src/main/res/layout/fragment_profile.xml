@@ -25,7 +25,7 @@
 
             <ImageButton
                 android:id="@+id/imageButton"
-                android:layout_width="77dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
@@ -42,14 +42,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nombre"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/ApellidosTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Apellidos"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/textView17"
@@ -62,7 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Edad"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/textView19"
@@ -80,7 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Correo"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <Space
             android:layout_width="match_parent"
@@ -93,6 +94,17 @@
             android:layout_marginEnd="16dp"
             android:text="Cambiar contraseña actual"
             app:iconTint="#FFFFFF" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="83dp" />
+
+        <Button
+            android:id="@+id/ayudaButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Ayuda" />
 
         <Space
             android:layout_width="match_parent"
@@ -124,5 +136,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

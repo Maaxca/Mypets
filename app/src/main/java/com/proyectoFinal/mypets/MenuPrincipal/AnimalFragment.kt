@@ -47,6 +47,18 @@ class AnimalFragment : Fragment(),OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         setupRecyclerView()
+        var sharedPref = activity?.getSharedPreferences(
+            getString(R.string.prefs_file), Context.MODE_PRIVATE)
+        var email=sharedPref!!.getString("email",null)
+        db.collection("users").document(email.toString()).get().addOnSuccessListener { document->
+            mBinding.textView18.text="Bienvenid@ ${document.get("nombre")}"
+        }
+
+        mBinding.swipeLayout.setOnRefreshListener {
+            obtenerDatos()
+            mBinding.swipeLayout.isRefreshing=false
+
+        }
 
         mBinding.anadirFloatingButton.setOnClickListener {
             var sharedPref = activity?.getSharedPreferences(
@@ -54,6 +66,7 @@ class AnimalFragment : Fragment(),OnClickListener {
             var email=sharedPref!!.getString("email",null)
             val intent= Intent(context, AnadirActivity::class.java).apply {
                 putExtra("email",email)
+                putExtra("animalEnv","")
             }
             startActivity(intent)
         }
@@ -121,6 +134,7 @@ class AnimalFragment : Fragment(),OnClickListener {
                     }
                     i++
                 }
+                Log.d("Hola",listajuegos.size.toString())
                 if(listajuegos.size>0){
                     mBinding.mensajeTextView.visibility=View.GONE
                     mBinding.anadirFloatingButton.visibility=View.GONE
@@ -131,7 +145,6 @@ class AnimalFragment : Fragment(),OnClickListener {
                     mBinding.anadirFloatingButton.visibility=View.VISIBLE
                     mBinding.anadirFloatingButton2.visibility=View.GONE
                 }
-                Log.d("Hola",listajuegos.size.toString())
 
                 mAdapter.setStores(listajuegos)
             }
