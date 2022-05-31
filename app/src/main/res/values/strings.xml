@@ -72,7 +72,7 @@
         <item>Boston Terrier</item>
         <item>Cavalier King Charles spaniel</item>
         <item>Pomerania</item>
-        <item>Yorkshire Terrie</item>
+        <item>Yorkshire Terrier</item>
         <item>Bull Terrier</item>
         <item>Pastor ovejero</item>
         <item>Cocker spaniel</item>
@@ -99,6 +99,25 @@
         <item>Shiba Inu</item>
         <item>Rottweiler</item>
         <item>Samoyedo</item>
+        <item>Black Mouth cur</item>
+        <item>Galgo</item>
+        <item>Pastor Americano</item>
+        <item>Basset Hound</item>
+        <item>Perro de agua</item>
+        <item>Podenco</item>
+        <item>Bobtail</item>
+        <item>Pointer</item>
+        <item>Appenzeller</item>
+        <item>Collie</item>
+        <item>Corgi</item>
+        <item>Terrier</item>
+        <item>Caniche</item>
+        <item>Harrier</item>
+        <item>Mastin</item>
+        <item>Cocker Spaniel</item>
+        <item>Pachon</item>
+        <item>Yorkie poo</item>
+        <item>Otra</item>
     </string-array>
 
     <string-array name="Tipos">

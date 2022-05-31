@@ -137,19 +137,19 @@
         app:srcCompat="@drawable/avatar"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="104dp"
-        android:backgroundTint="#6E6464"
-        android:text="Añadir Imagen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView2" />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="104dp"
+            android:backgroundTint="#FF9100"
+            android:text="Añadir Imagen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView2" />
 
     <ImageButton
         android:id="@+id/aceptarButton"

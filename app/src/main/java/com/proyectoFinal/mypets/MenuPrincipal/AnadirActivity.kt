@@ -1,25 +1,25 @@
 package com.proyectoFinal.mypets.MenuPrincipal
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Binder
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
-import android.widget.Spinner
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -28,13 +28,15 @@ import com.google.firebase.storage.StorageReference
 import com.proyectoFinal.mypets.Animals.Animal
 import com.proyectoFinal.mypets.R
 import com.proyectoFinal.mypets.databinding.ActivityAnadirBinding
-import com.proyectoFinal.mypets.login.MainActivity
-import org.jetbrains.anko.doAsync
+import java.io.ByteArrayOutputStream
+
 
 class AnadirActivity : AppCompatActivity() {
     private  lateinit var mBinding: ActivityAnadirBinding
     private lateinit var mSnapshotsStorageRef: StorageReference
     private lateinit var mSnapshotsDatabaseRef: DatabaseReference
+    private var MY_CAMERA_PERMISSION_CODE=1888
+    private var CAMERA_REQUEST=100
     private var mPhotoSelectedUri: Uri? = null
     val galleryResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         if (it.resultCode == Activity.RESULT_OK) {
@@ -189,12 +191,64 @@ class AnadirActivity : AppCompatActivity() {
         }
 
         mBinding.button.setOnClickListener{
+            var dialog=layoutInflater.inflate(R.layout.dialog_photo,null)
+            var dialogg=MaterialAlertDialogBuilder(this)
+                .setTitle("¿Que deseas hacer?")
+                .setView(dialog)
+                .setNegativeButton("Cancelar",null)
+                .show()
             setupFirebase(email?:"")
-            openGallery(email?:"")
+
+            dialog.findViewById<Button>(R.id.galeriaButton).setOnClickListener {
+                openGallery(email?:"")
+                dialogg.dismiss()
+            }
+
+            dialog.findViewById<Button>(R.id.fotoButton).setOnClickListener {
+                if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(
+                        arrayOf(Manifest.permission.CAMERA),
+                        MY_CAMERA_PERMISSION_CODE
+                    )
+                } else {
+                    val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    startActivityForResult(cameraIntent, CAMERA_REQUEST)
+                }
+                dialogg.dismiss()
+            }
+
         }
 
+    }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode === MY_CAMERA_PERMISSION_CODE) {
+            if (grantResults[0] === PackageManager.PERMISSION_GRANTED) {
+                val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                startActivityForResult(cameraIntent, CAMERA_REQUEST)
+            } else {
+                Toast.makeText(this, "Camera Permission Denied", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK)
+        {
+            var photo:Bitmap = data?.extras?.get("data") as Bitmap
+            val bytes = ByteArrayOutputStream()
+            photo.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+            val path: String = MediaStore.Images.Media.insertImage(baseContext.getContentResolver(), photo, "Title", null)
+
+            var prefs2=getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE)
+            var email2=prefs2.getString("email",null)
+            postSnapshot(email2!!,Uri.parse(path))
+            db.collection("users").document(email2!!).get().addOnSuccessListener { document ->
+                cambiarimagen(email2!!, "Mascota${document.get("numMascotas")}")
+            }
+        }
     }
 
     private fun setupFirebase(email:String) {
@@ -220,7 +274,7 @@ class AnadirActivity : AppCompatActivity() {
 
             val myStorageRef = mSnapshotsStorageRef.child(nombre)
 
-            myStorageRef.putFile(mPhotoSelectedUri!!)
+            myStorageRef.putFile(foto)
                 .addOnProgressListener {
                     mBinding.progressBar2.visibility = View.VISIBLE
                     mBinding.imageView2.visibility = View.INVISIBLE
