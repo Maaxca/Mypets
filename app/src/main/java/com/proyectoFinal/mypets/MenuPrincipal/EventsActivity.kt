@@ -3,6 +3,7 @@ package com.proyectoFinal.mypets.MenuPrincipal
 import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,7 @@ class EventsActivity : AppCompatActivity() {
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         binding=ActivityEventsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setup()

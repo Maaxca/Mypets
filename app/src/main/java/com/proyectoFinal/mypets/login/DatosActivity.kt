@@ -2,6 +2,7 @@ package com.proyectoFinal.mypets.login
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,6 +22,7 @@ class DatosActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_datos)
         val bundle:Bundle?=intent.extras
         val email:String?=bundle?.getString("email")

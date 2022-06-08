@@ -2,6 +2,7 @@ package com.proyectoFinal.mypets.MenuPrincipal
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ class MenuActivity : AppCompatActivity() {
     private lateinit var mFragmentManager: FragmentManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_menu)
         var bundle:Bundle?=intent.extras
         var email:String?=bundle?.getString("email")

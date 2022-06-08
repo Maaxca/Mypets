@@ -2,6 +2,7 @@ package com.proyectoFinal.mypets.login
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -19,6 +20,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         var siguienteButton: Button =findViewById(R.id.SiguienteRegisterButton)
         var Email: EditText =findViewById(R.id.EmailRegisterEditText)
         var Contraseña: EditText =findViewById(R.id.ContraseñaRegisterEditText)
