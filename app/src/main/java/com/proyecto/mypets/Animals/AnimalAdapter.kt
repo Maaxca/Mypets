@@ -1,26 +1,18 @@
-package com.proyectoFinal.mypets.Animals
+package com.proyecto.mypets.Animals
 
 import android.content.Context
-import android.content.DialogInterface
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.proyectoFinal.mypets.Listener.OnClickListener
-import com.proyectoFinal.mypets.R
-import com.proyectoFinal.mypets.databinding.AnimalBinding
-import com.proyectoFinal.mypets.databinding.DialogAnimalBinding
+import com.proyecto.mypets.Listener.OnClickListener
+import com.proyecto.mypets.R
+import com.proyecto.mypets.databinding.AnimalBinding
+import com.proyecto.mypets.databinding.DialogAnimalBinding
 
 class AnimalAdapter(private var animals:ArrayList<Animal>, private var listener: OnClickListener) :
     RecyclerView.Adapter<AnimalAdapter.ViewHolder>(){

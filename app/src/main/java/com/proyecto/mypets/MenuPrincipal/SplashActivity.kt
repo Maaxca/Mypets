@@ -1,10 +1,10 @@
-package com.proyectoFinal.mypets.MenuPrincipal
+package com.proyecto.mypets.MenuPrincipal
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.proyectoFinal.mypets.login.MainActivity
+import com.proyecto.mypets.login.MainActivity
 
 
 class SplashActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.proyectoFinal.mypets.MenuPrincipal
+package com.proyecto.mypets.MenuPrincipal
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -21,11 +21,11 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.proyectoFinal.mypets.Animals.Animal
-import com.proyectoFinal.mypets.Animals.AnimalAdapter
-import com.proyectoFinal.mypets.Listener.OnClickListener
-import com.proyectoFinal.mypets.R
-import com.proyectoFinal.mypets.databinding.FragmentAnimalBinding
+import com.proyecto.mypets.Animals.Animal
+import com.proyecto.mypets.Animals.AnimalAdapter
+import com.proyecto.mypets.Listener.OnClickListener
+import com.proyecto.mypets.R
+import com.proyecto.mypets.databinding.FragmentAnimalBinding
 
 class AnimalFragment : Fragment(),OnClickListener {
     private lateinit var mBinding: FragmentAnimalBinding
@@ -59,6 +59,17 @@ class AnimalFragment : Fragment(),OnClickListener {
             mBinding.swipeLayout.isRefreshing=false
 
         }
+
+        mBinding.recyclerView.setOnScrollChangeListener(
+            View.OnScrollChangeListener { v, scrollX, scrollY, _, _ ->
+                if (!v.canScrollVertically(1)){
+                    mBinding.anadirFloatingButton2.visibility=View.GONE
+                }
+                if (!v.canScrollVertically(-1)){
+                    mBinding.anadirFloatingButton2.visibility=View.VISIBLE
+                }
+
+            })
 
         mBinding.anadirFloatingButton.setOnClickListener {
             var sharedPref = activity?.getSharedPreferences(
@@ -134,7 +145,6 @@ class AnimalFragment : Fragment(),OnClickListener {
                     }
                     i++
                 }
-                Log.d("Hola",listajuegos.size.toString())
                 if(listajuegos.size>0){
                     mBinding.mensajeTextView.visibility=View.GONE
                     mBinding.anadirFloatingButton.visibility=View.GONE
@@ -157,7 +167,6 @@ class AnimalFragment : Fragment(),OnClickListener {
             .setPositiveButton("Confirmar") { dialogInterface, i ->
                 mAdapter.delete(animal)
                 val docRef = db.collection("users").document(email)
-                Log.d("Hola", email)
                 docRef.get()
                     .addOnSuccessListener { document ->
                         var numMascostas: String = document.get("numMascotas").toString()

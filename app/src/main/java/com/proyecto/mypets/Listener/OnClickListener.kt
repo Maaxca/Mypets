@@ -1,6 +1,6 @@
-package com.proyectoFinal.mypets.Listener
+package com.proyecto.mypets.Listener
 
-import com.proyectoFinal.mypets.Animals.Animal
+import com.proyecto.mypets.Animals.Animal
 
 
 interface OnClickListener {

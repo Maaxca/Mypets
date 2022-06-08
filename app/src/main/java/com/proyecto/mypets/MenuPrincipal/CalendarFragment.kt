@@ -1,4 +1,4 @@
-package com.proyectoFinal.mypets.MenuPrincipal
+package com.proyecto.mypets.MenuPrincipal
 
 import android.app.*
 import android.content.Context
@@ -12,10 +12,9 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
-import com.proyectoFinal.mypets.R
-import com.proyectoFinal.mypets.databinding.FragmentCalendarBinding
+import com.proyecto.mypets.R
+import com.proyecto.mypets.databinding.FragmentCalendarBinding
 import java.util.*
 
 

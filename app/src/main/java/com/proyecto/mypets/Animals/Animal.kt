@@ -1,4 +1,4 @@
-package com.proyectoFinal.mypets.Animals
+package com.proyecto.mypets.Animals
 
 import java.io.Serializable
 

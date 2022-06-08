@@ -1,4 +1,4 @@
-package com.proyectoFinal.mypets.MenuPrincipal
+package com.proyecto.mypets.MenuPrincipal
 
 import android.app.Activity
 import android.content.Context
@@ -24,9 +24,9 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.proyectoFinal.mypets.login.MainActivity
-import com.proyectoFinal.mypets.R
-import com.proyectoFinal.mypets.databinding.FragmentProfileBinding
+import com.proyecto.mypets.login.MainActivity
+import com.proyecto.mypets.R
+import com.proyecto.mypets.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
     var email2:String?=null
@@ -131,6 +131,7 @@ class ProfileFragment : Fragment() {
             }.show()
         }
 
+
         mBinding.ayudaButton.setOnClickListener {
             MaterialAlertDialogBuilder(requireContext()).apply {
                 setTitle("Ayuda")
@@ -148,7 +149,6 @@ class ProfileFragment : Fragment() {
 
     private fun postSnapshot(email:String,foto:Uri?) {
         if (foto != null) {
-            Log.d("Foto","Ha entrado")
             val myStorageRef = mSnapshotsStorageRef.child(email)
 
             myStorageRef.putFile(mPhotoSelectedUri!!)

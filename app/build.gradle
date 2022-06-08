@@ -8,7 +8,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.proyectoFinal.mypets"
+        applicationId 'com.proyecto.mypets'
         minSdk 26
         targetSdk 32
         versionCode 4

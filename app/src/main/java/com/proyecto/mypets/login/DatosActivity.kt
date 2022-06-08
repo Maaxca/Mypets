@@ -1,4 +1,4 @@
-package com.proyectoFinal.mypets.login
+package com.proyecto.mypets.login
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -13,8 +13,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.proyectoFinal.mypets.MenuPrincipal.MenuActivity
-import com.proyectoFinal.mypets.R
+import com.proyecto.mypets.MenuPrincipal.MenuActivity
+import com.proyecto.mypets.R
 
 class DatosActivity : AppCompatActivity() {
     val db = Firebase.firestore
@@ -70,7 +70,6 @@ class DatosActivity : AppCompatActivity() {
             }
 
         }.addOnFailureListener { e ->
-                Log.w("ERROR", "Error adding document", e)
             }
     }
 

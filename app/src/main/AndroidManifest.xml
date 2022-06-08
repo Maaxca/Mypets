@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.proyectoFinal.mypets">
+    package="com.proyecto.mypets">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -17,16 +17,16 @@
         android:screenOrientation="sensorPortrait"
         android:theme="@style/Theme.MyPets">
         <receiver
-            android:name=".MenuPrincipal.Notification"
+            android:name="com.proyecto.mypets.MenuPrincipal.Notification"
             android:enabled="true"/>
         <receiver
-            android:name=".MenuPrincipal.NotificationPaseo"
+            android:name="com.proyecto.mypets.MenuPrincipal.NotificationPaseo"
             android:enabled="true"/>
         <receiver
-            android:name=".MenuPrincipal.NotificationComida"
+            android:name="com.proyecto.mypets.MenuPrincipal.NotificationComida"
             android:enabled="true"/>
         <activity
-            android:name=".MenuPrincipal.SplashActivity"
+            android:name="com.proyecto.mypets.MenuPrincipal.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashScreen">
         <intent-filter>
@@ -36,22 +36,22 @@
         </intent-filter>
         </activity>
         <activity
-            android:name=".MenuPrincipal.EventsActivity"
+            android:name="com.proyecto.mypets.MenuPrincipal.EventsActivity"
             android:exported="false" />
         <activity
-            android:name=".MenuPrincipal.AnadirActivity"
+            android:name="com.proyecto.mypets.MenuPrincipal.AnadirActivity"
             android:exported="false" />
         <activity
-            android:name=".MenuPrincipal.MenuActivity"
+            android:name="com.proyecto.mypets.MenuPrincipal.MenuActivity"
             android:exported="false" />
         <activity
-            android:name=".login.DatosActivity"
+            android:name="com.proyecto.mypets.login.DatosActivity"
             android:exported="false" />
         <activity
-            android:name=".login.RegisterActivity"
+            android:name="com.proyecto.mypets.login.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".login.MainActivity"
+            android:name="com.proyecto.mypets.login.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.proyectoFinal.mypets.MenuPrincipal
+package com.proyecto.mypets.MenuPrincipal
 
 import android.content.Context
 import android.content.Intent
@@ -10,8 +10,8 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
-import com.proyectoFinal.mypets.R
-import com.proyectoFinal.mypets.login.MainActivity
+import com.proyecto.mypets.R
+import com.proyecto.mypets.login.MainActivity
 
 class MenuActivity : AppCompatActivity() {
     private lateinit var mActiveFragment: Fragment

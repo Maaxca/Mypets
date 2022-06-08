@@ -1,4 +1,4 @@
-package com.proyectoFinal.mypets
+package com.proyecto.mypets
 
 import org.junit.Test
 

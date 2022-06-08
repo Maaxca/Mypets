@@ -1,4 +1,4 @@
-package com.proyectoFinal.mypets.login
+package com.proyecto.mypets.login
 
 import android.content.Context
 import android.content.DialogInterface
@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.*
@@ -19,8 +20,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.proyectoFinal.mypets.MenuPrincipal.MenuActivity
-import com.proyectoFinal.mypets.R
+import com.proyecto.mypets.MenuPrincipal.MenuActivity
+import com.proyecto.mypets.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -158,11 +159,13 @@ class MainActivity : AppCompatActivity() {
                             comprobar(account.email?:"")
 
                         } else{
+                            Log.d("Hola",it.exception.toString())
                             showAlert(0)
                         }
                     }
                 }
             }catch (e:ApiException){
+                Log.e("Hola",e.message.toString())
                 showAlert(0)
             }
 

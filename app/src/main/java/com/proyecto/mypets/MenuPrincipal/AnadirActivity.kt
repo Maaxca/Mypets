@@ -1,4 +1,4 @@
-package com.proyectoFinal.mypets.MenuPrincipal
+package com.proyecto.mypets.MenuPrincipal
 
 import android.Manifest
 import android.app.Activity
@@ -26,9 +26,9 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.proyectoFinal.mypets.Animals.Animal
-import com.proyectoFinal.mypets.R
-import com.proyectoFinal.mypets.databinding.ActivityAnadirBinding
+import com.proyecto.mypets.Animals.Animal
+import com.proyecto.mypets.R
+import com.proyecto.mypets.databinding.ActivityAnadirBinding
 import java.io.ByteArrayOutputStream
 
 

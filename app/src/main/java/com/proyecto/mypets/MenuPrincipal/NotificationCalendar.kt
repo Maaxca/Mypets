@@ -1,11 +1,11 @@
-package com.proyectoFinal.mypets.MenuPrincipal
+package com.proyecto.mypets.MenuPrincipal
 
 import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
-import com.proyectoFinal.mypets.R
+import com.proyecto.mypets.R
 
 const val notificationID = -1
 const val channelID = "Eventos"
