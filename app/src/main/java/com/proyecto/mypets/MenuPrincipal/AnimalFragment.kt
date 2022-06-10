@@ -65,7 +65,7 @@ class AnimalFragment : Fragment(),OnClickListener {
                 if (!v.canScrollVertically(1)){
                     mBinding.anadirFloatingButton2.visibility=View.GONE
                 }
-                if (!v.canScrollVertically(-1)){
+                else{
                     mBinding.anadirFloatingButton2.visibility=View.VISIBLE
                 }
 

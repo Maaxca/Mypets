@@ -11,8 +11,8 @@ android {
         applicationId 'com.proyecto.mypets'
         minSdk 26
         targetSdk 32
-        versionCode 4
-        versionName "2.0"
+        versionCode 7
+        versionName "2.1.5.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
